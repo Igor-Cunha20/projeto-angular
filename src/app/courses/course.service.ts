@@ -18,15 +18,32 @@ export class CourseService{
         return this.httpClient.get<Course[]>(this.coursesUrl);
     }
 
-    retrieveById(id: number): Course{
-        return COURSES.find(courseIterator => courseIterator.id === id);
+    retrieveById(id: number): Observable<Course>{
+        return this.httpClient.get<Course>(`${this.coursesUrl}/${id}`);
     }
 
-    save(course: Course): void{
+    // retrieveById(id: number): Course{
+    //     return COURSES.find(courseIterator => courseIterator.id === id);
+    // }
+
+    // save(course: Course): void{
+    //     if(course.id){
+    //         const index = COURSES.findIndex(courseIterator => courseIterator.id === course.id);
+    //         COURSES[index] = course;
+    //     }
+    // }
+
+    save(course: Course): Observable<Course>{
         if(course.id){
-            const index = COURSES.findIndex(courseIterator => courseIterator.id === course.id);
-            COURSES[index] = course;
+            return this.httpClient.put<Course>(`${this.coursesUrl}/${course.id}`,course);
+        } else {
+            return this.httpClient.post<Course>(`${this.coursesUrl}`,course);
         }
+    }
+
+    deleteById(id: number): Observable<any>{
+        return this.httpClient.delete<any>(`${this.coursesUrl}/${id}`);
+
     }
 }
 
@@ -38,7 +55,7 @@ var COURSES: Course[] = [
         description: 'Neste curso, os alunos irão obter um grande conhecimento nos principais recursos do CLI.',
         duration: 120,
         code: 'XLF-1212',
-        rating: 1,
+        rating: 3,
         price: 12.99,
         imageUrl: '/assets/images/cli.png',
     },

@@ -32,7 +32,8 @@
             </td>
             <td>
                 <!-- quando clicar no botão ira entrar nessa rota a baixo e ela espera receber um id como "parametro" -->
-                <a [routerLink]="['/courses/info', course.id]" class="btn btn-primary">Edit</a>
+                <a [routerLink]="['/courses/info', course.id]" class="btn btn-primary m-2">Edit</a>
+                <button (click)="deleteById(course.id)" class="btn btn-danger">Delete</button>
             </td>
         </tr>
     </tbody>
