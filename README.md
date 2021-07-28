@@ -40,7 +40,7 @@ npm install bootstrap
 npm install font-awesome
 
 //para fazer o back-end funcionar ir na pasta servers/course-manager-server e usar o código
-npm install
-node serve.js 
+1 - npm install
+2 - Pelo CMD na pasta acima executar: node serve.js 
 
 //////////////////////////////////////////////////////////////
